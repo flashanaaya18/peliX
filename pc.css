@@ -1,0 +1,45 @@
+/* Estilos para la versión de Escritorio (PC) - min-width: 801px */
+
+/* --- Layout Principal --- */
+body {
+    /* El layout de flexbox solo se aplica en escritorio */
+    display: flex;
+}
+
+.sidenav {
+    width: 240px; /* Ancho fijo para el menú lateral */
+    padding-top: 20px;
+    position: sticky; /* Se mantiene fijo al hacer scroll */
+    top: 0;
+    height: 100vh;
+    border-right: 1px solid #222;
+    z-index: 500; /* Aseguramos que esté por encima */
+}
+
+.sidenav .close-btn {
+    display: none; /* Ocultamos el botón de cerrar en escritorio */
+}
+
+.desktop-content-wrapper {
+    flex-grow: 1; /* Ocupa el resto del espacio */
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 240px); /* Ajustamos el ancho */
+}
+
+/* --- Ocultar elementos de móvil en PC --- */
+.menu-inferior {
+    display: none;
+}
+
+.header-menu-btn {
+    display: none;
+}
+
+/* Ajuste para que el contenido principal no sea tapado por el header fijo */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 400;
+    width: 100%;
+}

@@ -1,8 +1,8 @@
 // --- API Frontend ---
 // Este archivo ahora hace peticiones a nuestro propio backend.
 
-// Reemplaza '192.168.X.X' con la dirección IP de tu computadora en la red Wi-Fi.
-const BACKEND_URL = 'http://192.168.1.108:3001'; // <-- ¡RECUERDA CAMBIAR ESTA IP POR LA TUYA!
+// IP de tu red local para que tu celular pueda conectarse.
+const BACKEND_URL = 'http://192.168.1.16:3001'; // <-- ¡Esta es la IP de tu PC!
 
 if (BACKEND_URL.includes('192.168.X.X')) {
     console.error("¡ERROR! No has configurado la IP del backend en api.js. Reemplaza '192.168.X.X' con la IP de tu computadora.");
@@ -41,22 +41,98 @@ const fetchFromBackend = async (endpoint) => {
 };
 
 const fetchMovies = async (category) => {
-    return fetchFromBackend(`/api/movies/${category}`);
+    const userId = auth.getUser()?.id;
+    return fetchFromBackend(`/api/movies/${category}?userId=${userId || ''}`);
 };
 
 const fetchGenres = async () => {
     return fetchFromBackend('/api/genres');
 };
 
+const addGenre = async (genreData) => {
+    return fetch(`${BACKEND_URL}/api/genres`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(genreData),
+    });
+};
+
+const deleteGenre = async (genreId) => {
+    return fetch(`${BACKEND_URL}/api/genres/${genreId}`, {
+        method: 'DELETE',
+    });
+};
+
+
 const searchMoviesAPI = async (query) => {
     // La búsqueda ahora se hace en el backend
-    return fetchFromBackend(`/api/search/movies?query=${encodeURIComponent(query)}`);
+    const userId = auth.getUser()?.id;
+    return fetchFromBackend(`/api/search/movies?query=${encodeURIComponent(query)}&userId=${userId || ''}`);
+};
+
+const getAllMovies = async () => {
+    return fetchFromBackend('/api/movies');
 };
 
 // --- API para Favoritos ---
 
 const getFavorites = async (userId) => {
     return fetchFromBackend(`/api/users/${userId}/favorites`);
+};
+
+const getUserById = async (userId) => {
+    const requesterId = auth.getUser()?.id;
+    return fetchFromBackend(`/api/users/${userId}?requesterId=${requesterId}`);
+};
+
+const updateUserName = async (userId, name) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/name`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }),
+    });
+};
+
+const updateUserAvatar = async (userId, avatar_url) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/avatar`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ avatar_url }),
+    });
+};
+
+const updateUserBio = async (userId, bio) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/bio`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bio }),
+    });
+};
+
+const updateUserBirthDate = async (userId, birth_date) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/birthdate`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ birth_date }),
+    });
+};
+
+const updateUserPrivacy = async (userId, visibility) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/privacy`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visibility }),
+    });
+};
+
+const getFriends = async (userId) => {
+    return fetchFromBackend(`/api/users/${userId}/friends`);
+};
+
+const getPendingRequests = async (userId) => {
+    return fetchFromBackend(`/api/users/${userId}/pending-requests`);
 };
 
 const addFavorite = async (userId, movieId) => {
@@ -75,10 +151,66 @@ const removeFavorite = async (userId, movieId) => {
     });
 };
 
+const addMovie = async (movieData) => {
+    return fetch(`${BACKEND_URL}/api/movies`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieData),
+    });
+};
+
 const deleteMovie = async (movieId) => {
     return fetch(`${BACKEND_URL}/api/movies/${movieId}`, {
         method: 'DELETE',
     });
+};
+
+// --- API para Lista de Deseos ---
+
+const getWishlist = async (userId) => {
+    return fetchFromBackend(`/api/users/${userId}/wishlist`);
+};
+
+const addToWishlist = async (userId, movieId) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/wishlist`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ movieId }),
+    });
+};
+
+const removeFromWishlist = async (userId, movieId) => {
+    return fetch(`${BACKEND_URL}/api/users/${userId}/wishlist/${movieId}`, {
+        method: 'DELETE',
+    });
+};
+
+const getWishlistSummary = async () => {
+    return fetchFromBackend('/api/wishlist/summary');
+};
+
+// --- API para Comentarios ---
+
+const getMovieComments = async (movieId) => {
+    return fetchFromBackend(`/api/movies/${movieId}/comments`);
+};
+
+const postMovieComment = async (movieId, userId, comment) => {
+    return fetch(`${BACKEND_URL}/api/movies/${movieId}/comments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, comment }),
+    });
+};
+
+// --- API para el Robot de Recomendaciones ---
+
+const getRecommendations = async (userId) => {
+    return fetchFromBackend(`/api/users/${userId}/recommendations`);
 };
 
 const getGenresForMovies = async (movieIds) => {
@@ -89,4 +221,38 @@ const getGenresForMovies = async (movieIds) => {
         },
         body: JSON.stringify({ movieIds }),
     }).then(res => res.json());
+};
+
+// --- API para Amistades ---
+
+const getAllUsers = async () => {
+    return fetchFromBackend('/api/users');
+};
+
+const getFriendshipStatus = async (userId1, userId2) => {
+    return fetchFromBackend(`/api/friendship-status/${userId1}/${userId2}`);
+};
+
+const sendFriendRequest = async (requesterId, recipientId) => {
+    return fetch(`${BACKEND_URL}/api/friends/request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requesterId, recipientId }),
+    });
+};
+
+const acceptFriendRequest = async (requesterId, recipientId) => {
+    return fetch(`${BACKEND_URL}/api/friends/accept`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requesterId, recipientId }),
+    });
+};
+
+const rejectFriendRequest = async (userId1, userId2) => {
+    return fetch(`${BACKEND_URL}/api/friends/request`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId1, userId2 }),
+    });
 };

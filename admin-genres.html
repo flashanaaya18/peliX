@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Géneros - Admin</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="renposive.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header class="header">
+        <div class="contenedor">
+            <a href="principal.html" style="text-decoration: none;">
+                <img src="/peliX.png" alt="Logo Pelix" class="logo">
+            </a>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <a href="admin.html" class="boton-volver" style="position: static; margin-bottom: 20px; display: inline-block;"><i class="fa-solid fa-arrow-left"></i> Volver al Panel</a>
+        <h3 class="titulo-seccion">Gestionar Géneros</h3>
+        
+        <!-- Formulario para añadir género -->
+        <form id="add-genre-form" class="admin-form">
+            <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Añadir Nuevo Género</h4>
+            <div class="form-group">
+                <label for="genre-id">ID del Género (de TMDb)</label>
+                <input type="number" id="genre-id" placeholder="Ej: 53 para 'Thriller'" required>
+            </div>
+            <div class="form-group">
+                <label for="genre-name">Nombre del Género</label>
+                <input type="text" id="genre-name" placeholder="Ej: Thriller" required>
+            </div>
+            <button type="submit" class="auth-button">Añadir Género</button>
+            <p id="admin-genre-message" class="error-message" style="display: none; margin-top: 15px;"></p>
+        </form>
+
+        <!-- Lista de géneros existentes -->
+        <div class="admin-form" style="margin-top: 40px;">
+            <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Lista de Géneros Actuales</h4>
+            <ul id="genre-list" class="admin-movie-list">
+                <!-- La lista de géneros se cargará aquí -->
+            </ul>
+        </div>
+    </main>
+
+    <nav class="menu-inferior">
+        <a href="principal.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="buscar.html">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar</span>
+        </a>
+        <a href="#" id="btn-menu">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menú</span>
+        </a>
+    </nav>
+
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <div id="main-links-container"></div>
+        <h4 class="sidenav-title">Géneros</h4>
+        <div id="genres-link-container"></div>
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <script src="authService.js"></script>
+    <script src="api.js"></script>
+    <script src="admin-genres.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+```
+
+### 5. Nueva Lógica de Admin: `admin-genres.js`
+
+Finalmente, he creado el script que da vida a la nueva página, permitiendo cargar, añadir y eliminar géneros.
+
+```diff
+--- /dev/null
++++ b/d:/aplicacion de peliculas/admin-genres.js
+@@ -0,0 +1,73 @@
++document.addEventListener('DOMContentLoaded', async () => {
++    // --- Protección de Ruta de Administrador ---
++    const currentUser = auth.getUser();
++    if (!currentUser || currentUser.role !== 'admin') {
++        alert('Acceso denegado. Debes ser administrador para ver esta página.');
++        window.location.href = 'principal.html';
++        return;
++    }
++
++    // --- Selección de Elementos del DOM ---
++    const addGenreForm = document.getElementById('add-genre-form');
++    const genreList = document.getElementById('genre-list');
++    const adminMessage = document.getElementById('admin-genre-message');
++
++    // --- Renderizar la Lista de Géneros ---
++    const renderGenres = async () => {
++        const genres = await fetchGenres();
++        genreList.innerHTML = '';
++        genres.forEach(genre => {
++            const genreItem = document.createElement('li');
++            genreItem.innerHTML = `
++                <span>${genre.name} (ID: ${genre.id})</span>
++                <button class="delete-btn" data-id="${genre.id}">Eliminar</button>
++            `;
++            genreList.appendChild(genreItem);
++        });
++    };
++
++    // --- Lógica para Añadir Género ---
++    addGenreForm.addEventListener('submit', async (e) => {
++        e.preventDefault();
++
++        const newGenre = {
++            id: parseInt(document.getElementById('genre-id').value),
++            name: document.getElementById('genre-name').value.trim(),
++        };
++
++        if (!newGenre.id || !newGenre.name) {
++            adminMessage.textContent = 'Error: El ID y el nombre son obligatorios.';
++            adminMessage.style.color = '#e50914';
++            adminMessage.style.display = 'block';
++            return;
++        }
++
++        try {
++            const response = await addGenre(newGenre);
++            if (!response.ok) throw new Error('El ID del género ya podría existir.');
++            
++            adminMessage.textContent = '¡Género añadido con éxito!';
++            adminMessage.style.color = '#28a745';
++            adminMessage.style.display = 'block';
++            addGenreForm.reset();
++            renderGenres(); // Refrescar la lista
++        } catch (error) {
++            adminMessage.textContent = `Error: ${error.message}`;
++            adminMessage.style.color = '#e50914';
++            adminMessage.style.display = 'block';
++        }
++    });
++
++    // --- Lógica para Eliminar Género (Event Delegation) ---
++    genreList.addEventListener('click', async (e) => {
++        if (e.target.classList.contains('delete-btn')) {
++            const genreId = e.target.dataset.id;
++            if (confirm(`¿Estás seguro de que quieres eliminar el género con ID ${genreId}?`)) {
++                await deleteGenre(genreId);
++                renderGenres(); // Refrescar la lista
++            }
++        }
++    });
++
++    // --- Carga Inicial ---
++    renderGenres();
++});

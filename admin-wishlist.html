@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categoría - Pelix</title>
+    <title>Películas Deseadas - Admin</title>
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="renposive.css" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -23,20 +23,15 @@
         </div>
     </header>
 
-    <!-- Contenedor para el contenido principal en escritorio -->
-    <div class="desktop-content-wrapper">
-        <header class="header"><!-- ... --></header>
-
     <main class="contenedor">
-        <h3 id="category-title" class="titulo-seccion"></h3>
-        <div id="category-grid" class="grid-resultados">
-            <!-- Esqueleto de carga para la página de categoría -->
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
+        <a href="admin.html" class="boton-volver" style="position: static; margin-bottom: 20px; display: inline-block;"><i class="fa-solid fa-arrow-left"></i> Volver al Panel</a>
+        <h3 class="titulo-seccion">Ranking de Películas Deseadas</h3>
+        <p style="font-family: sans-serif; color: #aaa; margin-bottom: 30px;">Aquí puedes ver qué películas son las más solicitadas por los usuarios.</p>
+        
+        <div class="admin-form">
+            <ul id="wishlist-summary-list" class="admin-movie-list">
+                <!-- El ranking se cargará aquí -->
+            </ul>
         </div>
     </main>
 
@@ -55,21 +50,20 @@
         </a>
     </nav>
 
+    <!-- Menú Lateral (Sidenav) -->
     <div class="sidenav" id="side-menu">
         <a href="javascript:void(0)" class="close-btn">&times;</a>
-        <!-- Contenedor para enlaces principales -->
         <div id="main-links-container"></div>
-        <!-- Separador y título de géneros -->
         <h4 class="sidenav-title">Géneros</h4>
         <div id="genres-link-container"></div>
-        <!-- Separador y sección de cuenta -->
         <h4 class="sidenav-title">Cuenta</h4>
         <div id="account-links-container"></div>
     </div>
     <div id="overlay" class="overlay"></div>
 
+    <script src="authService.js"></script>
     <script src="api.js"></script>
-    <script src="category.js"></script>
+    <script src="admin-wishlist.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

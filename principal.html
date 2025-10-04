@@ -7,35 +7,60 @@
          <title>Pelix Bienvenidos</title>
          <link rel="stylesheet" href="estilos.css" />
          <link rel="stylesheet" href="renposive.css" />
+         <link rel="stylesheet" href="pc.css" media="screen and (min-width: 801px)">
          <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
          <link rel="manifest" href="manifest.json">
     </head>
     <body>
-        <header class="header">
-            <div class="contenedor">
-                <a href="principal.html" style="text-decoration: none;">
-                    <img src="/peliX.png" alt="Logo Pelix" class="logo">
-                </a>
-                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
-            </div>
-        </header>
+        <!-- Menú Lateral (Sidenav) -->
+        <div class="sidenav" id="side-menu">
+            <a href="javascript:void(0)" class="close-btn">&times;</a>
+            
+            <!-- Contenedor para enlaces principales -->
+            <div id="main-links-container"></div>
+    
+            <!-- Separador y título de géneros -->
+            <h4 class="sidenav-title">Géneros</h4>
+            <div id="genres-link-container"></div>
+    
+            <!-- Separador y sección de cuenta -->
+            <h4 class="sidenav-title">Cuenta</h4>
+            <div id="account-links-container"></div>
+        </div>
 
-        <main>
-            <div class="pelicula-principal">
+        <!-- Contenedor para el contenido principal en escritorio -->
+        <div class="desktop-content-wrapper">
+            <header class="header">
                 <div class="contenedor">
-                    <h3 class="titulo"></h3>
-                    <p class="descripcion"></p>
-                    <button role="button" class="boton"><i class="fa-solid fa-play"></i>Reproducir</button>
+                    <a href="principal.html" style="text-decoration: none;">
+                        <img src="/peliX.png" alt="Logo Pelix" class="logo">
+                    </a>
+                    <div class="header-right">
+                        <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                        <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+                    </div>
                 </div>
-            </div>
+            </header>
 
-            <!-- El contenido de los carruseles se generará dinámicamente aquí -->
-            <div id="carousels-container">
-                <!-- Los esqueletos de carga se añadirán con JS -->
-            </div>
+            <main>
+                <div class="pelicula-principal">
+                    <div class="contenedor">
+                        <h3 class="titulo"></h3>
+                        <p class="descripcion"></p>
+                        <button role="button" class="boton"><i class="fa-solid fa-play"></i>Reproducir</button>
+                    </div>
+                </div>
 
-        </main>
+                <!-- El contenido de los carruseles se generará dinámicamente aquí -->
+                <div id="carousels-container">
+                    <!-- El carrusel de recomendaciones se insertará aquí si el usuario está logueado -->
+                    <div id="recommendations-container"></div>
+
+                    <!-- Los esqueletos de carga se añadirán con JS -->
+                </div>
+            </main>
+        </div>
 
         <nav class="menu-inferior">
             <a href="principal.html" class="active">
@@ -52,14 +77,6 @@
             </a>
         </nav>
 
-        <!-- Menú Lateral (Sidenav) -->
-        <div class="sidenav" id="side-menu">
-            <a href="javascript:void(0)" class="close-btn">&times;</a>
-            <a href="perfil.html" id="perfil-link">Perfil</a>
-            <div id="genres-link-container"></div> <!-- Contenedor para géneros -->
-            <a href="milista.html" id="mi-lista-link">Mi Lista</a>
-            <a href="#" id="btn-logout" style="display: none;">Cerrar Sesión</a>
-        </div>
         <div id="overlay" class="overlay"></div>
 
         <script>

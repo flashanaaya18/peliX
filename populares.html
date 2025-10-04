@@ -16,9 +16,16 @@
             <a href="principal.html" style="text-decoration: none;">
                 <img src="/peliX.png" alt="Logo Pelix" class="logo">
             </a>
-            <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
         </div>
     </header>
+
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+        <header class="header"><!-- ... --></header>
 
     <main class="contenedor">
         <h3 class="titulo-seccion">Películas Populares</h3>
@@ -50,10 +57,14 @@
 
     <div class="sidenav" id="side-menu">
         <a href="javascript:void(0)" class="close-btn">&times;</a>
-        <a href="perfil.html" id="perfil-link">Perfil</a>
+        <!-- Contenedor para enlaces principales -->
+        <div id="main-links-container"></div>
+        <!-- Separador y título de géneros -->
+        <h4 class="sidenav-title">Géneros</h4>
         <div id="genres-link-container"></div>
-        <a href="milista.html" id="mi-lista-link">Mi Lista</a>
-        <a href="#" id="btn-logout" style="display: none;">Cerrar Sesión</a>
+        <!-- Separador y sección de cuenta -->
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
     </div>
     <div id="overlay" class="overlay"></div>
 

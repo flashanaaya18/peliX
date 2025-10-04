@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categoría - Pelix</title>
+    <title>Buscar Amigos - Pelix</title>
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="renposive.css" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -28,15 +28,32 @@
         <header class="header"><!-- ... --></header>
 
     <main class="contenedor">
-        <h3 id="category-title" class="titulo-seccion"></h3>
-        <div id="category-grid" class="grid-resultados">
-            <!-- Esqueleto de carga para la página de categoría -->
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
+        <h3 class="titulo-seccion">Encuentra Amigos</h3>
+        
+        <!-- Robot-X Section -->
+        <div id="robot-container" class="robot-container">
+            <img src="/peliX.png" alt="Robot-X" class="robot-avatar">
+            <div class="robot-chat-bubble">
+                <p id="robot-message">¡Hola! Soy Robot-X. Estoy aquí para ayudarte a conectar. ¿Qué te gustaría hacer?</p>
+                <div id="robot-actions" class="robot-actions">
+                    <button class="robot-action-btn" data-action="focus-search">Buscar un amigo por ID</button>
+                    <button class="robot-action-btn" data-action="explain-page">¿Cómo funciona esto?</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de búsqueda por ID -->
+        <div class="barra-busqueda" style="margin-top: 20px;">
+            <input type="number" id="search-user-id" placeholder="Buscar usuario por ID...">
+            <button id="btn-search-user"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <p id="search-error" class="error-message" style="display: none; margin-top: 10px;"></p>
+
+        <div class="admin-form" style="margin-top: 40px;">
+            <p style="font-family: sans-serif; color: #aaa; margin-bottom: 20px;">Explora la comunidad y conecta con otros cinéfilos.</p>
+            <ul id="user-list" class="admin-movie-list">
+                <!-- La lista de usuarios se cargará aquí -->
+            </ul>
         </div>
     </main>
 
@@ -55,21 +72,20 @@
         </a>
     </nav>
 
+    <!-- Menú Lateral (Sidenav) -->
     <div class="sidenav" id="side-menu">
         <a href="javascript:void(0)" class="close-btn">&times;</a>
-        <!-- Contenedor para enlaces principales -->
         <div id="main-links-container"></div>
-        <!-- Separador y título de géneros -->
         <h4 class="sidenav-title">Géneros</h4>
         <div id="genres-link-container"></div>
-        <!-- Separador y sección de cuenta -->
         <h4 class="sidenav-title">Cuenta</h4>
         <div id="account-links-container"></div>
     </div>
     <div id="overlay" class="overlay"></div>
 
+    <script src="authService.js"></script>
     <script src="api.js"></script>
-    <script src="category.js"></script>
+    <script src="amigos.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

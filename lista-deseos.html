@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categoría - Pelix</title>
+    <title>Mi Lista de Deseos - Pelix</title>
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="renposive.css" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -28,16 +28,9 @@
         <header class="header"><!-- ... --></header>
 
     <main class="contenedor">
-        <h3 id="category-title" class="titulo-seccion"></h3>
-        <div id="category-grid" class="grid-resultados">
-            <!-- Esqueleto de carga para la página de categoría -->
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-        </div>
+        <h3 class="titulo-seccion">Mi Lista de Deseos</h3>
+        <div id="wishlist-grid" class="grid-resultados"></div>
+        <p id="lista-vacia-mensaje" class="mensaje-vacio" style="display: none;">Tu lista de deseos está vacía. Añade películas para verlas aquí.</p>
     </main>
 
     <nav class="menu-inferior">
@@ -55,6 +48,7 @@
         </a>
     </nav>
 
+    <!-- Menú Lateral (Sidenav) -->
     <div class="sidenav" id="side-menu">
         <a href="javascript:void(0)" class="close-btn">&times;</a>
         <!-- Contenedor para enlaces principales -->
@@ -68,8 +62,9 @@
     </div>
     <div id="overlay" class="overlay"></div>
 
+    <script src="authService.js"></script>
     <script src="api.js"></script>
-    <script src="category.js"></script>
+    <script src="lista-deseos.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

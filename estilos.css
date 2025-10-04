@@ -1,3 +1,22 @@
+/* --- Variables de Tema --- */
+:root {
+    --bg-color: #0d1117; /* De negro a azul oscuro profundo */
+    --text-color: #e6edf3; /* Un blanco ligeramente más suave */
+    --text-color-secondary: #7d8590; /* Un gris más suave */
+    --surface-color: #161b22; /* Un color de superficie más azulado */
+    --border-color: #30363d; /* Un borde más sutil */
+    --primary-color: #3884ff; /* De rojo a un azul vibrante y moderno */
+    --danger-color: #da3633; /* Un rojo específico para acciones de peligro */
+}
+
+.light-theme {
+    --bg-color: #f4f4f4;
+    --text-color: #000;
+    --text-color-secondary: #555;
+    --surface-color: #fff;
+    --border-color: #ddd;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +24,7 @@
 }
 
 body {
-    background: #141414; /* Un fondo oscuro, similar a las plataformas de streaming */
+    background: var(--bg-color);
     font-family: 'Bebas Neue', cursive;
 }
 
@@ -15,7 +34,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #141414;
+    background: var(--bg-color);
     z-index: 200;
     color: white;
     display: flex;
@@ -76,11 +95,26 @@ body {
     border: 2px solid #fff;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-menu-btn {
+    display: none; /* Oculto en móvil por defecto */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 /* --- Pelicula Principal --- */
 .pelicula-principal {
 	font-size: 16px;
 	min-height: 40.62em;
-	color: #fff;
+	color: var(--text-color);
 	background-position: center center;
 	background-size: cover;
 	margin-bottom: 3.12em;
@@ -117,7 +151,7 @@ body {
 .pelicula-principal .boton {
 	background: rgba(0,0,0, 0.5);
 	border: none;
-	border-radius: 0.31em;
+	border-radius: 4px;
 	padding: 0.93em 1.87em;
 	color: #fff;
 	margin-right: 1.25em;
@@ -135,7 +169,7 @@ body {
 }
 
 main {
-    color: white;
+    color: var(--text-color);
 }
 
 .peliculas-recomendadas {
@@ -146,7 +180,7 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     border-bottom: 2px solid #222;
 }
 
@@ -155,15 +189,15 @@ main {
 }
 
 .ver-mas {
-    font-size: 16px;
-    color: #aaa;
+    font-size: 1em;
+    color: var(--text-color-secondary);
     text-decoration: none;
     font-family: sans-serif;
     transition: color .3s ease;
 }
 
 .ver-mas:hover {
-    color: #fff;
+    color: var(--text-color);
 }
 
 .peliculas-recomendadas .contenedor-principal {
@@ -235,6 +269,28 @@ main {
     color: #e50914; /* Rojo cuando es favorito */
 }
 
+/* --- Estilos para el botón de Lista de Deseos (Estrella) --- */
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Posicionado a la izquierda */
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+    z-index: 10;
+}
+
+.wishlist-btn.wished i {
+    color: #ffc107; /* Amarillo cuando está en la lista */
+}
+
 /* --- Estilos para las flechas --- */
 .flecha-izquierda,
 .flecha-derecha {
@@ -273,7 +329,7 @@ main {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #101010;
+    background: var(--surface-color);
     z-index: 300;
     padding: 8px 0;
     border-top: 1px solid #222;
@@ -285,13 +341,13 @@ main {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #8e8e8e; /* Color para íconos inactivos */
+    color: var(--text-color-secondary); /* Color para íconos inactivos */
     font-size: 12px;
     font-family: sans-serif;
 }
 
 .menu-inferior a.active {
-    color: #fff; /* Color para el ícono activo */
+    color: var(--text-color); /* Color para el ícono activo */
 }
 
 .menu-inferior a i {
@@ -301,14 +357,10 @@ main {
 
 /* --- Estilos para la página de detalle (pelicula.html) --- */
 .detalle-pelicula {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     color: #fff;
+    min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -411,10 +463,10 @@ main {
 .barra-busqueda input {
     flex-grow: 1;
     padding: 15px;
-    font-size: 18px;
-    border: 2px solid #333;
-    background: #1f1f1f;
-    color: #fff;
+    font-size: 1.1em;
+    border: 2px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-color);
     border-radius: 5px 0 0 5px;
     outline: none;
 }
@@ -432,12 +484,12 @@ main {
 
 .grid-resultados {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 20px;
 }
 .titulo-seccion {
-    color: #fff;
-    font-size: 30px;
+    color: var(--text-color);
+    font-size: 2em;
     margin-bottom: 20px;
     border-bottom: 2px solid #222;
     padding-bottom: 10px;
@@ -488,7 +540,7 @@ main {
     position: fixed;
     z-index: 500;
     top: 0;
-    left: 0;
+    right: 0; /* Cambiado a la derecha */
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
@@ -511,7 +563,7 @@ main {
 
 .sidenav .close-btn {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -528,6 +580,15 @@ main {
     overflow-x: hidden;
     transition: 0.5s;
     display: none; /* Oculto por defecto */
+}
+
+.sidenav-title {
+    padding: 10px 15px 10px 32px;
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
 }
 
 /* --- Estilos para el Esqueleto de Carga (Loading Skeleton) --- */
@@ -588,7 +649,7 @@ main {
 
 .input-group input {
     width: 100%;
-    background: #333;
+    background: var(--border-color);
     border: 0;
     border-radius: 4px;
     color: #fff;
@@ -616,7 +677,7 @@ main {
 
 .auth-button {
     width: 100%;
-    background: #e50914;
+    background: var(--primary-color);
     border: 0;
     border-radius: 4px;
     color: #fff;
@@ -672,7 +733,7 @@ main {
 .profile-container {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
     background: #1f1f1f;
     padding: 30px;
     border-radius: 8px;
@@ -690,7 +751,7 @@ main {
 
 .profile-info {
     font-size: 1.2em;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .profile-info .info-item {
@@ -698,7 +759,7 @@ main {
 }
 
 .profile-info strong {
-    color: #aaa;
+    color: var(--text-color-secondary);
     margin-right: 10px;
 }
 
@@ -722,7 +783,7 @@ main {
 }
 
 .save-btn {
-    background: #e50914;
+    background: var(--primary-color);
 }
 
 .profile-stats {
@@ -740,7 +801,7 @@ main {
 }
 
 .stat-item h4 {
-    color: #aaa;
+    color: var(--text-color-secondary);
     font-size: 1em;
     margin-bottom: 10px;
     font-family: sans-serif;
@@ -749,13 +810,13 @@ main {
 
 .stat-item p {
     font-size: 2.5em;
-    color: #fff;
+    color: var(--text-color);
 }
 
 /* --- Estilos para la Página de Perfil --- */
 .profile-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 30px;
     background: #1f1f1f;
     padding: 30px;
@@ -773,7 +834,7 @@ main {
 
 .profile-info {
     font-size: 1.2em;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .profile-info p {
@@ -790,7 +851,7 @@ main {
     border-radius: 8px;
     margin-top: 20px;
     font-family: sans-serif;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .form-group {
@@ -799,7 +860,7 @@ main {
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #aaa;
 }
 
@@ -842,12 +903,12 @@ main {
     justify-content: space-between;
     align-items: center;
     font-family: sans-serif;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .delete-btn {
-    background: #e50914;
-    color: #fff;
+    background: var(--primary-color);
+    color: var(--text-color);
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
@@ -855,17 +916,407 @@ main {
     font-size: 0.9em;
 }
 
+.action-btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+.action-btn.verify {
+    background: #28a745; /* Verde para verificar */
+}
+.action-btn.unverify {
+    background: #ffc107; /* Amarillo para advertencia/quitar */
+    color: #000;
+}
+
+.action-btn.approve {
+    background: #28a745; /* Verde para aprobar */
+}
+
+.action-btn.deny {
+    background: #dc3545; /* Rojo para rechazar */
+}
+
+.action-btn.delete {
+    background: #6c757d; /* Gris oscuro para eliminar */
+    margin-left: 5px;
+}
+
+.action-btn.promote {
+    background: #0d6efd; /* Azul para promover */
+    margin-left: 5px;
+}
+
+.action-btn.demote {
+    background: #6c757d; /* Gris para degradar */
+    margin-left: 5px;
+}
+
+.profile-bio {
+    margin-top: 15px;
+    font-style: italic;
+    color: var(--text-color-secondary);
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+.profile-bio-edit {
+    margin-top: 15px;
+}
+
+.profile-bio-edit textarea {
+    width: 100%;
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 1em;
+    min-height: 80px;
+}
+
+.friend-status {
+    font-family: sans-serif;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.friend-list-container, .pending-requests-container {
+    margin-top: 40px;
+}
+
+.friend-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.friend-item {
+    text-align: center;
+}
+
+.friend-item a {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    font-family: sans-serif;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.friend-item a:hover {
+    color: var(--text-color);
+}
+
+.friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-info-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-list-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.user-name-id {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-list-id {
+    font-size: 0.8em;
+    color: var(--text-color-secondary);
+}
 /* --- Estilos para la Zona de Peligro --- */
 .danger-zone {
-    background: #1f1f1f;
+    background: var(--surface-color);
     padding: 30px;
     border-radius: 8px;
-    border-left: 4px solid #e50914;
+    border-left: 4px solid var(--danger-color);
 }
 
 .danger-zone-title {
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 20px;
-    color: #e50914;
+    color: var(--danger-color);
+}
+.verified-badge {
+    color: #1d9bf0; /* Color azul similar a Twitter/X */
+    font-size: 0.8em;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* --- Estilos para el Dashboard de Admin --- */
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: #1f1f1f;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.dashboard-card i {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.dashboard-card p {
+    color: #aaa;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 0.9em;
+}
+
+.notification-badge-container {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #e50914;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 2px solid #1f1f1f;
+}
+
+/* --- Estilos para Toggle Switch --- */
+.switch-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    color: #fff;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* --- Estilos para los nuevos ajustes --- */
+.settings-section {
+    background: var(--surface-color);
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 40px;
+    font-family: sans-serif;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* --- Estilos para la Sección de Comentarios --- */
+.comments-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    font-family: sans-serif;
+}
+
+.comment-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.comment-form-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.comment-form textarea {
+    flex-grow: 1;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 12px;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 1em;
+    min-height: 50px;
+    resize: vertical;
+}
+
+.comment-form .auth-button {
+    width: auto;
+    padding: 12px 20px;
+    margin: 0;
+    height: 50px;
+}
+
+#comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.comment-author-avatar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.comment-content {
+    flex-grow: 1;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.comment-author-name {
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: var(--text-color-secondary);
+}
+
+.comment-text {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* --- Estilos para el Robot de Amigos --- */
+.robot-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--surface-color);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px 0;
+    border-left: 4px solid var(--primary-color);
+    font-family: sans-serif;
+}
+
+.robot-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    flex-shrink: 0;
+}
+
+.robot-chat-bubble {
+    flex-grow: 1;
+}
+
+.robot-chat-bubble p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.robot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.robot-action-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.robot-action-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
 }

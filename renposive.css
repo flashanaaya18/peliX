@@ -26,9 +26,11 @@
         padding: 8px 15px;
     }
 
-    /* Hacemos el menú lateral un poco más ancho en móviles */
+    /* En móvil, el menú lateral inicia oculto y se activa con JS */
     .sidenav {
-        width: 0; /* Mantenemos el estado inicial */
+        width: 0;
+        position: fixed; /* Aseguramos que sea flotante y no parte del layout */
+        height: 100%;
     }
 
     /* --- Estilos responsivos para principal.html --- */
@@ -91,5 +93,10 @@
 
     .flecha-izquierda, .flecha-derecha {
         display: none; /* Ocultamos las flechas en móvil para una UI más limpia */
+    }
+
+    /* En móvil, el wrapper de contenido debe ocupar el 100% del ancho */
+    .desktop-content-wrapper {
+        width: 100%;
     }
 }

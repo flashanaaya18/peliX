@@ -16,9 +16,16 @@
             <a href="principal.html" style="text-decoration: none;">
                 <img src="/peliX.png" alt="Logo Pelix" class="logo">
             </a>
-            <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
         </div>
     </header>
+
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+        <header class="header"><!-- ... --></header>
 
     <main class="contenedor">
         <h3 class="titulo-seccion">Mi Perfil</h3>
@@ -33,13 +40,31 @@
             <div class="profile-info">
                 <div class="info-item">
                     <strong>Nombre:</strong>
-                    <span id="profile-name-display"></span>
+                    <span id="profile-name-container">
+                        <span id="profile-name-display"></span>
+                        <i id="verified-badge" class="fa-solid fa-circle-check verified-badge" style="display: none;"></i>
+                    </span>
                     <input type="text" id="profile-name-input" class="profile-input" style="display: none;">
                 </div>
+                <div id="bio-container">
+                    <p id="profile-bio" class="profile-bio"></p>
+                    <div id="bio-edit-container" class="profile-bio-edit" style="display: none;">
+                        <textarea id="bio-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <strong>Fecha de Nacimiento:</strong>
+                    <span id="profile-birthdate-display"></span>
+                </div>
                 <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p><strong>ID de Usuario:</strong> <span id="profile-id"></span></p>
                 <div class="profile-actions">
                     <button id="edit-profile-btn" class="edit-btn">Editar Nombre</button>
                     <button id="save-profile-btn" class="save-btn" style="display: none;">Guardar</button>
+                </div>
+                <!-- Contenedor para botones de amistad (se mostrará en perfiles de otros) -->
+                <div id="friend-actions-container" class="profile-actions" style="display: none;">
+                    <!-- Los botones se generarán dinámicamente aquí -->
                 </div>
             </div>
         </div>
@@ -58,33 +83,17 @@
         <h3 class="titulo-seccion">Un Vistazo a Mi Lista</h3>
         <div id="profile-favorites-grid" class="grid-resultados"></div>
         <p id="profile-lista-vacia" class="mensaje-vacio" style="display: none;">Aún no has añadido películas a tu lista.</p>
-    </main>
 
-    <main class="contenedor" style="margin-top: 40px;">
-        <h3 class="titulo-seccion">Vistos Recientemente</h3>
-        <div id="recently-viewed-carousel" class="contenedor-principal"></div>
-    </main>
+        <!-- Sección de Amigos -->
+        <div id="friend-list-section" class="friend-list-container" style="display: none;">
+            <h3 class="titulo-seccion">Amigos</h3>
+            <ul id="friend-list" class="friend-list"></ul>
+        </div>
 
-    <main class="contenedor" style="margin-top: 40px;">
-        <h3 class="titulo-seccion">Ajustes de Cuenta</h3>
-        <form id="change-password-form" class="admin-form" style="margin-top: 0;">
-             <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Cambiar Contraseña</h4>
-             <div class="form-group">
-                 <label for="current-password">Contraseña Actual</label>
-                 <input type="password" id="current-password" required>
-             </div>
-             <div class="form-group">
-                 <label for="new-password">Nueva Contraseña</label>
-                 <input type="password" id="new-password" required>
-             </div>
-             <button type="submit" class="auth-button">Actualizar Contraseña</button>
-        </form>
-    </main>
-
-    <main class="contenedor" style="margin-top: 40px;">
-        <div class="danger-zone">
-            <h3 class="titulo-seccion danger-zone-title">Zona de Peligro</h3>
-            <button id="delete-account-btn" class="delete-btn">Eliminar Mi Cuenta</button>
+        <!-- Sección de Solicitudes Pendientes (solo en perfil propio) -->
+        <div id="pending-requests-section" class="pending-requests-container" style="display: none;">
+            <h3 class="titulo-seccion">Solicitudes de Amistad Pendientes</h3>
+            <ul id="pending-requests-list" class="admin-movie-list"></ul>
         </div>
     </main>
 
@@ -106,10 +115,14 @@
     <!-- Menú Lateral (Sidenav) -->
     <div class="sidenav" id="side-menu">
         <a href="javascript:void(0)" class="close-btn">&times;</a>
-        <a href="perfil.html" id="perfil-link">Perfil</a>
+        <!-- Contenedor para enlaces principales -->
+        <div id="main-links-container"></div>
+        <!-- Separador y título de géneros -->
+        <h4 class="sidenav-title">Géneros</h4>
         <div id="genres-link-container"></div>
-        <a href="milista.html" id="mi-lista-link">Mi Lista</a>
-        <a href="#" id="btn-logout" style="display: none;">Cerrar Sesión</a>
+        <!-- Separador y sección de cuenta -->
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
     </div>
     <div id="overlay" class="overlay"></div>
 

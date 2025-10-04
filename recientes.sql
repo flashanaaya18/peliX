@@ -19,3 +19,9 @@ INSERT INTO `movies` (`id`, `title`, `overview`, `poster_path`, `backdrop_path`,
 
 -- Conexión de "Cars" con sus géneros (Aventura, Animación, Comedia):
 INSERT INTO `movie_genres` (`movie_id`, `genre_id`) VALUES (920, 12), (920, 16), (920, 35);
+
+-- Película "Intensa-Mente 2" añadida como reciente:
+INSERT INTO `movies` (`id`, `title`, `overview`, `poster_path`, `backdrop_path`, `youtube_id`, `category`) VALUES (1022789, 'Intensa-Mente 2', 'Alegría, Tristeza, Furia, Temor y Desagrado, las emociones de Riley, llevan mucho tiempo llevando a cabo una operación exitosa. Sin embargo, todo cambia cuando el Cuartel General sufre una repentina demolición para dar paso a algo totalmente inesperado: ¡nuevas emociones! Ansiedad, Envidia, Ennui y Vergüenza llegan para ponerlo todo patas arriba.', '/gMBdJ2mS2YfS2AMdMU32iT3h6w.jpg', '/2mtxXjkQd9xXp3Sg6S0sKkKk7iS.jpg', 'kO5Z6w27_1E', 'now_playing');
+
+-- Conexión de "Intensa-Mente 2" con sus géneros (Animación, Familia, Aventura, Comedia):
+INSERT INTO `movie_genres` (`movie_id`, `genre_id`) VALUES (1022789, 16), (1022789, 10751), (1022789, 12), (1022789, 35);

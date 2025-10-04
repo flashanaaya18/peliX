@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - Pelix</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="renposive.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <div id="main-links-container"></div>
+        <h4 class="sidenav-title">Géneros</h4>
+        <div id="genres-link-container"></div>
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
+    </div>
+
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+
+    <header class="header">
+        <div class="contenedor">
+            <a href="principal.html" style="text-decoration: none;">
+                <img src="/peliX.png" alt="Logo Pelix" class="logo">
+            </a>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor">
+            <h3 class="titulo-seccion">Ajustes de Cuenta</h3>
+
+            <!-- Sección de Datos Personales -->
+            <form id="personal-data-form" class="settings-section">
+                <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Datos Personales</h4>
+                <div class="form-group">
+                    <label for="birth-date">Fecha de Nacimiento</label>
+                    <input type="date" id="birth-date" required>
+                </div>
+                <button type="submit" class="auth-button">Guardar Fecha de Nacimiento</button>
+            </form>
+
+            <form id="change-password-form" class="admin-form" style="margin-top: 20px;">
+                 <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Cambiar Contraseña</h4>
+                 <div class="form-group">
+                     <label for="current-password">Contraseña Actual</label>
+                     <input type="password" id="current-password" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="new-password">Nueva Contraseña</label>
+                     <input type="password" id="new-password" required>
+                 </div>
+                 <button type="submit" class="auth-button">Actualizar Contraseña</button>
+            </form>
+    
+            <div class="admin-form" style="margin-top: 40px;">
+                <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Verificación de Cuenta <i class="fa-solid fa-circle-check verified-badge" style="color: #1d9bf0;"></i></h4>
+                <div id="verification-status"></div>
+            </div>
+    
+            <!-- Sección solo para administradores -->
+            <div id="admin-mode-section" class="admin-form" style="display: none; margin-top: 40px;">
+                <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Modo Administrador</h4>
+                <div class="form-group">
+                    <label class="switch-label">
+                        <span>Activar funciones de administrador</span>
+                        <label class="switch"><input type="checkbox" id="admin-mode-toggle"><span class="slider round"></span></label>
+                    </label>
+                </div>
+            </div>
+    
+            <div class="danger-zone" style="margin-top: 40px;">
+                <h3 class="titulo-seccion danger-zone-title">Zona de Peligro</h3>
+                <p style="font-family: sans-serif; color: #aaa; margin-bottom: 20px;">Esta acción es permanente y no se puede deshacer.</p>
+                <button id="delete-account-btn" class="delete-btn">Eliminar Mi Cuenta</button>
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <nav class="menu-inferior">
+        <a href="principal.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="buscar.html">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar</span>
+        </a>
+        <a href="#" id="btn-menu">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menú</span>
+        </a>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <script src="authService.js"></script>
+    <script src="api.js"></script>
+    <script src="configuracion.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

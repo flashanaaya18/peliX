@@ -9,16 +9,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
-    <div class="detalle-pelicula">
-        <div class="contenedor-detalle">
-            <a href="principal.html" class="boton-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
-            <h1 class="titulo-detalle"></h1>
-            <p class="descripcion-detalle"></p>
-            <div class="botones-detalle">
-                <button class="boton-reproducir"><i class="fa-solid fa-play"></i></button>
-                <button id="btn-mi-lista" class="boton-mi-lista"><i class="fa-solid fa-plus"></i></button>
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <!-- Contenedor para enlaces principales -->
+        <div id="main-links-container"></div>
+        <!-- Separador y título de géneros -->
+        <h4 class="sidenav-title">Géneros</h4>
+        <div id="genres-link-container"></div>
+        <!-- Separador y sección de cuenta -->
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
+    </div>
+
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+        <div class="detalle-pelicula">
+            <div class="contenedor-detalle">
+                <a href="principal.html" class="boton-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+                <h1 class="titulo-detalle"></h1>
+                <p class="descripcion-detalle"></p>
+                <div class="botones-detalle">
+                    <button class="boton-reproducir"><i class="fa-solid fa-play"></i></button>
+                    <button id="btn-mi-lista" class="boton-mi-lista"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="video-container"></div>
             </div>
-            <div class="video-container"></div>
+        </div>
+
+        <!-- Sección de Comentarios -->
+        <div class="comments-section contenedor">
+            <h3 class="titulo-seccion">Comentarios</h3>
+            <div id="comments-form-container">
+                <!-- El formulario de comentarios se insertará aquí si el usuario está logueado -->
+            </div>
+            <div id="comments-list">
+                <!-- La lista de comentarios se cargará aquí -->
+            </div>
+            <p id="no-comments-message" class="mensaje-vacio" style="display: none;">
+                Sé el primero en dejar un comentario.
+            </p>
         </div>
     </div>
 
@@ -37,14 +67,6 @@
         </a>
     </nav>
 
-    <!-- Menú Lateral (Sidenav) -->
-    <div class="sidenav" id="side-menu">
-        <a href="javascript:void(0)" class="close-btn">&times;</a>
-        <a href="perfil.html" id="perfil-link">Perfil</a>
-        <div id="genres-link-container"></div>
-        <a href="milista.html" id="mi-lista-link">Mi Lista</a>
-        <a href="#" id="btn-logout" style="display: none;">Cerrar Sesión</a>
-    </div>
     <div id="overlay" class="overlay"></div>
     
     <script src="authService.js"></script>

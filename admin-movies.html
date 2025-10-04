@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Películas - Pelix</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="renposive.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header class="header">
+        <div class="contenedor">
+            <a href="principal.html" style="text-decoration: none;">
+                <img src="/peliX.png" alt="Logo Pelix" class="logo">
+            </a>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+        <header class="header"><!-- ... --></header>
+
+    <main class="contenedor">
+        <a href="admin.html" class="boton-volver" style="position: static; margin-bottom: 20px; display: inline-block;"><i class="fa-solid fa-arrow-left"></i> Volver al Panel</a>
+        <h3 class="titulo-seccion">Gestionar Películas</h3>
+
+        <!-- Formulario para Añadir/Editar Película -->
+        <div class="admin-form" style="margin-top: 20px;">
+            <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Añadir Nueva Película</h4>
+            <form id="add-movie-form">
+                <div class="form-group">
+                    <label for="movie-title">Título</label>
+                    <input type="text" id="movie-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="movie-overview">Descripción</label>
+                    <textarea id="movie-overview" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="movie-poster">Ruta del Póster (ej: /poster.jpg)</label>
+                    <input type="text" id="movie-poster" required>
+                </div>
+                <div class="form-group">
+                    <label for="movie-backdrop">Ruta del Fondo (ej: /fondo.jpg)</label>
+                    <input type="text" id="movie-backdrop">
+                </div>
+                <div class="form-group">
+                    <label for="movie-youtube">ID de YouTube (ej: dQw4w9WgXcQ)</label>
+                    <input type="text" id="movie-youtube">
+                </div>
+                <div class="form-group">
+                    <label for="movie-category">Categoría Principal</label>
+                    <select id="movie-category" required>
+                        <option value="now_playing">Estrenos</option>
+                        <option value="popular">Populares</option>
+                        <option value="top_rated">Mejor Calificadas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Géneros</label>
+                    <div id="genres-checkbox-container" class="checkbox-container">
+                        <!-- Los géneros se cargarán aquí -->
+                    </div>
+                </div>
+                <button type="submit" class="auth-button">Añadir Película</button>
+            </form>
+            <p id="admin-movie-message" style="font-family: sans-serif; margin-top: 20px;"></p>
+        </div>
+
+        <!-- Lista de Películas Existentes -->
+        <div class="admin-form" style="margin-top: 40px;">
+            <h4 style="margin-bottom: 20px; font-family: sans-serif; font-weight: normal;">Catálogo de Películas</h4>
+            <ul id="movie-list" class="admin-movie-list">
+                <!-- La lista de películas se cargará aquí -->
+            </ul>
+        </div>
+    </main>
+
+    <nav class="menu-inferior">
+        <a href="principal.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+        <a href="buscar.html"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></a>
+        <a href="#" id="btn-menu"><i class="fa-solid fa-bars"></i><span>Menú</span></a>
+    </nav>
+
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <div id="main-links-container"></div>
+        <h4 class="sidenav-title">Géneros</h4>
+        <div id="genres-link-container"></div>
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <script src="authService.js"></script>
+    <script src="api.js"></script>
+    <script src="admin-movies.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Pelix</title>
+    <title>Panel de Administrador - Pelix</title>
     <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="renposive.css" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header class="header">
@@ -13,57 +16,77 @@
             <a href="principal.html" style="text-decoration: none;">
                 <img src="/peliX.png" alt="Logo Pelix" class="logo">
             </a>
+            <div class="header-right">
+                <div id="user-header-avatar" class="user-avatar" style="display: none;"></div>
+                <button id="header-menu-btn" class="header-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
         </div>
     </header>
 
-    <main class="contenedor">
-        <h3 class="titulo-seccion">Añadir Nueva Película</h3>
-        <form id="add-movie-form" class="admin-form">
-            <div class="form-group">
-                <label for="title">Título</label>
-                <input type="text" id="title" required>
-            </div>
-            <div class="form-group">
-                <label for="overview">Descripción</label>
-                <textarea id="overview" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="poster_path">Ruta del Póster (ej: /mi_poster.jpg)</label>
-                <input type="text" id="poster_path" required>
-            </div>
-            <div class="form-group">
-                <label for="backdrop_path">Ruta del Fondo (ej: /mi_fondo.jpg)</label>
-                <input type="text" id="backdrop_path" required>
-            </div>
-            <div class="form-group">
-                <label for="youtube_id">ID del video de YouTube</label>
-                <input type="text" id="youtube_id" required>
-            </div>
-            <div class="form-group">
-                <label for="category">Categoría Principal</label>
-                <select id="category" required>
-                    <option value="now_playing">Recientes</option>
-                    <option value="popular">Populares</option>
-                    <option value="top_rated">Mejor Calificadas</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Géneros</label>
-                <div id="genres-checkbox-container" class="checkbox-container">
-                    <!-- Los géneros se cargarán aquí dinámicamente -->
-                </div>
-            </div>
-            <button type="submit" class="auth-button">Añadir Película</button>
-            <p id="admin-message" style="display: none;"></p>
-        </form>
-    </main>
+    <!-- Contenedor para el contenido principal en escritorio -->
+    <div class="desktop-content-wrapper">
+        <header class="header"><!-- ... --></header>
 
-    <main class="contenedor" style="margin-top: 40px;">
-        <h3 class="titulo-seccion">Gestionar Películas Existentes</h3>
-        <div id="movie-list-container">
-            <!-- La lista de películas se cargará aquí dinámicamente -->
+    <main class="contenedor">
+        <h3 class="titulo-seccion">Panel de Administrador</h3>
+        <p style="font-family: sans-serif; color: #aaa; margin-bottom: 30px;">Selecciona una de las opciones para gestionar la aplicación.</p>
+        <div class="admin-dashboard">
+            <a href="solicitudes.html" class="dashboard-card">
+                <div class="notification-badge-container">
+                    <i class="fa-solid fa-bell"></i>
+                    <span id="requests-count-badge" class="notification-badge" style="display: none;"></span>
+                </div>
+                <h4>Solicitudes Pendientes</h4>
+                <p>Aprobar o rechazar solicitudes de verificación.</p>
+            </a>
+            <a href="admin-users.html" class="dashboard-card">
+                <i class="fa-solid fa-users-gear"></i>
+                <h4>Gestionar Usuarios</h4>
+                <p>Verificar cuentas y administrar usuarios.</p>
+            </a>
+            <a href="admin-movies.html" class="dashboard-card">
+                <i class="fa-solid fa-film"></i>
+                <h4>Gestionar Películas</h4>
+                <p>Añadir o eliminar películas del catálogo.</p>
+            </a>
+            <a href="admin-genres.html" class="dashboard-card">
+                <i class="fa-solid fa-tags"></i>
+                <h4>Gestionar Géneros</h4>
+                <p>Añadir o eliminar géneros de películas.</p>
+            </a>
+            <a href="admin-wishlist.html" class="dashboard-card">
+                <i class="fa-solid fa-wand-sparkles"></i>
+                <h4>Películas Deseadas</h4>
+                <p>Ver las películas más solicitadas por los usuarios.</p>
+            </a>
         </div>
     </main>
+
+    <nav class="menu-inferior">
+        <a href="principal.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="buscar.html">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar</span>
+        </a>
+        <a href="#" id="btn-menu">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menú</span>
+        </a>
+    </nav>
+
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <div id="main-links-container"></div>
+        <h4 class="sidenav-title">Géneros</h4>
+        <div id="genres-link-container"></div>
+        <h4 class="sidenav-title">Cuenta</h4>
+        <div id="account-links-container"></div>
+    </div>
+    <div id="overlay" class="overlay"></div>
 
     <script src="authService.js"></script>
     <script src="api.js"></script>
