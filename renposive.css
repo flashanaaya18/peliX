@@ -1,0 +1,95 @@
+/* Media Query para dispositivos móviles */
+@media screen and (max-width: 800px) {
+    /* --- Estilos responsivos para pelicula.html --- */
+    .detalle-pelicula .contenedor-detalle {
+        text-align: center; /* Centramos el texto para una mejor lectura en móvil */
+    }
+
+    .titulo-detalle {
+        font-size: 2.2em;
+    }
+
+    .descripcion-detalle {
+        max-width: 95%; /* Ocupa un poco más de ancho */
+        font-size: 0.9em;
+        margin-left: auto; /* Centramos el bloque de descripción */
+        margin-right: auto;
+    }
+
+    .botones-detalle {
+        justify-content: center; /* Centramos los botones de Play y Mi Lista */
+    }
+
+    .boton-volver {
+        top: 15px;
+        left: 15px;
+        padding: 8px 15px;
+    }
+
+    /* Hacemos el menú lateral un poco más ancho en móviles */
+    .sidenav {
+        width: 0; /* Mantenemos el estado inicial */
+    }
+
+    /* --- Estilos responsivos para principal.html --- */
+    .pelicula-principal {
+        min-height: 35em; /* Altura menor en móvil */
+        font-size: 14px;
+        align-items: center; /* Centramos verticalmente el contenido del banner */
+    }
+
+    .pelicula-principal .descripcion {
+        max-width: 100%; /* La descripción ocupa todo el ancho */
+    }
+
+    .pelicula-principal .titulo {
+        font-size: 2.5em; /* Título más pequeño */
+    }
+
+    .pelicula-principal .contenedor {
+        margin-bottom: 4em;
+    }
+
+	.header {
+		text-align: center;
+	}
+
+    .logo {
+        font-size: 30px; /* Hacemos el logo un poco más pequeño */
+    }
+
+    .peliculas-recomendadas .contenedor-titulo-controles h3 {
+        font-size: 24px;
+    }
+
+	.pelicula {
+		/* Ya no es necesario, la cuadrícula se encarga del tamaño */
+	}
+
+    .contenedor {
+        width: 95%; /* Usamos un poco más de espacio en la pantalla */
+    }
+
+    .peliculas-recomendadas {
+        margin-bottom: 30px; /* Reducimos el espacio entre secciones */
+    }
+
+    .contenedor-carousel {
+        gap: 15px; /* Reducimos el espacio entre películas */
+    }
+
+    /* Mostramos el menú inferior en móviles */
+    .menu-inferior {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    }
+
+    /* Añadimos espacio al final para que el menú no tape el contenido */
+    main {
+        padding-bottom: 80px;
+    }
+
+    .flecha-izquierda, .flecha-derecha {
+        display: none; /* Ocultamos las flechas en móvil para una UI más limpia */
+    }
+}

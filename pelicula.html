@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Película</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="detalle-pelicula">
+        <div class="contenedor-detalle">
+            <a href="principal.html" class="boton-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            <h1 class="titulo-detalle"></h1>
+            <p class="descripcion-detalle"></p>
+            <div class="botones-detalle">
+                <button class="boton-reproducir"><i class="fa-solid fa-play"></i></button>
+                <button id="btn-mi-lista" class="boton-mi-lista"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="video-container"></div>
+        </div>
+    </div>
+
+    <nav class="menu-inferior">
+        <a href="principal.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="buscar.html">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar</span>
+        </a>
+        <a href="#" id="btn-menu">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menú</span>
+        </a>
+    </nav>
+
+    <!-- Menú Lateral (Sidenav) -->
+    <div class="sidenav" id="side-menu">
+        <a href="javascript:void(0)" class="close-btn">&times;</a>
+        <a href="perfil.html" id="perfil-link">Perfil</a>
+        <div id="genres-link-container"></div>
+        <a href="milista.html" id="mi-lista-link">Mi Lista</a>
+        <a href="#" id="btn-logout" style="display: none;">Cerrar Sesión</a>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    
+    <script src="authService.js"></script>
+    <script src="api.js"></script>
+    <script src="pelicula.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "now_playing": [
+    {
+      "id": 653346,
+      "title": "El reino del planeta de los simios",
+      "overview": "Años después del reinado de César, un joven simio emprende un viaje que le llevará a cuestionar todo lo que le han enseñado sobre el pasado y a tomar decisiones que definirán el futuro de simios y humanos por igual.",
+      "poster_path": "/o6hV7tLd4FBB6s2kYq5Yk9T2y7L.jpg",
+      "backdrop_path": "/fqv8v6AycXqGmsCDzS3c8s0g3iK.jpg",
+      "youtubeId": "W_7C-3S2_yA"
+    },
+    {
+      "id": 786892,
+      "title": "Furiosa: de la saga Mad Max",
+      "overview": "Al caer el mundo, la joven Furiosa es arrebatada del Lugar Verde de Muchas Madres y cae en manos de una gran Horda de Motociclistas liderada por el Señor de la Guerra Dementus. Navegando por el Páramo, se topan con la Ciudadela presidida por El Inmortan Joe. Mientras los dos Tiranos luchan por el dominio, Furiosa debe sobrevivir a muchas pruebas mientras reúne los medios para encontrar el camino a casa.",
+      "poster_path": "/iADOJ8ZG0pNJhLX42wQeDeS6Sg.jpg",
+      "backdrop_path": "/xRd1eJc52gA41c3M3x3x6b16z4A.jpg",
+      "youtubeId": "jgyt0_y4E3I"
+    },
+    {
+      "id": 1011985,
+      "title": "Kung Fu Panda 4",
+      "overview": "Po se prepara para ser el líder espiritual del Valle de la Paz, buscando un sucesor como Guerrero Dragón. Mientras entrena a un nuevo practicante de kung fu, enfrenta a una malvada hechicera que planea robar su Báculo de la Sabiduría.",
+      "poster_path": "/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
+      "backdrop_path": "/s9YTxwaByYeoSqugYjJJtZjMRAG.jpg",
+      "youtubeId": "1vOfr_63-wM"
+    }
+  ],
+  "popular": [
+    {
+      "id": 823464,
+      "title": "Godzilla y Kong: El nuevo imperio",
+      "overview": "Una aventura cinematográfica completamente nueva, que enfrentará al todopoderoso Kong y al temible Godzilla contra una colosal amenaza desconocida escondida dentro de nuestro mundo.",
+      "poster_path": "/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      "backdrop_path": "/k0ucFBBgSDTXYU8fVHXJM41K30f.jpg",
+      "youtubeId": "Q0E1-g_T5U0"
+    },
+    {
+      "id": 929590,
+      "title": "Dune: Parte Dos",
+      "overview": "Paul Atreides se une a la tribu de los Fremen y comienza un viaje espiritual y marcial para convertirse en mesías, mientras intenta evitar el horrible pero inevitable futuro que ha presenciado.",
+      "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      "backdrop_path": "/v1QQKq8M0fWxMgSdGOX1aCv8qMB.jpg",
+      "youtubeId": "Ua-iDa_c91k"
+    },
+    {
+      "id": 385687,
+      "title": "Interestelar",
+      "overview": "Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente descubierto para superar las limitaciones de los viajes espaciales tripulados y vencer las inmensas distancias que tiene un viaje interestelar.",
+      "poster_path": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      "backdrop_path": "/gJL5kp5FMopB2sN4WZY2PAaxzM8.jpg",
+      "youtubeId": "zSWdZVtXT7E"
+    }
+  ],
+  "top_rated": [
+    {
+      "id": 238,
+      "title": "El Padrino",
+      "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone, barely survives an attempt on his life, his youngest son, Michael, steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+      "poster_path": "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+      "backdrop_path": "/tmU7GeKVybMWFButWEGl2M42AzU.jpg",
+      "youtubeId": "UaVTIH8mujA"
+    },
+    {
+      "id": 278,
+      "title": "Cadena perpetua",
+      "overview": "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
+      "poster_path": "/uD8i3e2pP4t5a0hC5aB3tVzTfW.jpg",
+      "backdrop_path": "/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
+      "youtubeId": "6hB3S9bIaco"
+    },
+    {
+      "id": 424,
+      "title": "La lista de Schindler",
+      "overview": "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
+      "poster_path": "/sF1U4EUQS8Ycpynlax4a4dfj80k.jpg",
+      "backdrop_path": "/loRmRzQXZeqG78TqZuyvSlqf伯.jpg",
+      "youtubeId": "M5FpB60jM0o"
+    }
+  ]
+}

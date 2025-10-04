@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pelix</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="contenedor">
+            <a href="principal.html" style="text-decoration: none;">
+                <img src="/peliX.png" alt="Logo Pelix" class="logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <h3 class="titulo-seccion">Añadir Nueva Película</h3>
+        <form id="add-movie-form" class="admin-form">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="overview">Descripción</label>
+                <textarea id="overview" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="poster_path">Ruta del Póster (ej: /mi_poster.jpg)</label>
+                <input type="text" id="poster_path" required>
+            </div>
+            <div class="form-group">
+                <label for="backdrop_path">Ruta del Fondo (ej: /mi_fondo.jpg)</label>
+                <input type="text" id="backdrop_path" required>
+            </div>
+            <div class="form-group">
+                <label for="youtube_id">ID del video de YouTube</label>
+                <input type="text" id="youtube_id" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Categoría Principal</label>
+                <select id="category" required>
+                    <option value="now_playing">Recientes</option>
+                    <option value="popular">Populares</option>
+                    <option value="top_rated">Mejor Calificadas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Géneros</label>
+                <div id="genres-checkbox-container" class="checkbox-container">
+                    <!-- Los géneros se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+            <button type="submit" class="auth-button">Añadir Película</button>
+            <p id="admin-message" style="display: none;"></p>
+        </form>
+    </main>
+
+    <main class="contenedor" style="margin-top: 40px;">
+        <h3 class="titulo-seccion">Gestionar Películas Existentes</h3>
+        <div id="movie-list-container">
+            <!-- La lista de películas se cargará aquí dinámicamente -->
+        </div>
+    </main>
+
+    <script src="authService.js"></script>
+    <script src="api.js"></script>
+    <script src="admin.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
