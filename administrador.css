@@ -1,0 +1,210 @@
+/*
+  ==============================================
+  Estilos para el Panel de Administración
+  ==============================================
+*/
+
+:root {
+    --admin-bg: #000000; /* Negro puro */
+    --admin-card-bg: #141414; /* Negro Netflix */
+    --admin-border: #2F2F2F; /* Borde gris oscuro */
+    --admin-primary: #E50914; /* Rojo Netflix */
+    --admin-success: #10B981; /* Verde para acciones de éxito */
+    --admin-warning: #F59E0B; /* Amarillo para advertencias */
+    --admin-danger: #B20710; /* Rojo oscuro para peligro */
+    --admin-text-light: #F9FAFB; /* Texto claro principal */
+    --admin-text-secondary: #9CA3AF; /* Texto secundario/gris */
+}
+
+body {
+    background: var(--admin-bg);
+    color: var(--admin-text-light);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Sobrescribir el fondo animado para un look más limpio */
+.background-animation, .particles-container {
+    background: var(--admin-bg);
+}
+
+/* Header del Admin */
+.navbar {
+    background: var(--admin-card-bg) !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+    backdrop-filter: none;
+}
+
+.logo h1 .badge {
+    background-color: var(--admin-primary) !important;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+/* Títulos de sección */
+.section-header h2 {
+    color: var(--admin-text-light);
+    background: none; /* Quitar el gradiente */
+    -webkit-text-fill-color: initial;
+    text-shadow: none;
+}
+
+.section-header p {
+    color: var(--admin-text-secondary);
+}
+
+/* Pestañas de Navegación del Panel */
+.navbar-nav .nav-link {
+    background-color: transparent;
+    color: var(--admin-text-secondary);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--admin-text-light);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: var(--admin-primary);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(229, 9, 20, 0.4);
+}
+
+/* Tarjetas de Contenido */
+.settings-card {
+    background-color: var(--admin-card-bg);
+    border: 1px solid var(--admin-border);
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-filter: none;
+}
+
+/* Formularios */
+.form-control, .form-select {
+    background-color: #222222 !important;
+    color: var(--admin-text-light) !important;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 8px !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--admin-primary) !important;
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.3) !important;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--admin-text-secondary);
+}
+
+.cta-button {
+    background: var(--admin-primary) !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--admin-danger) !important; /* Un rojo un poco más oscuro */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px 0 rgba(229, 9, 20, 0.4);
+}
+
+/* Tablas */
+.table {
+    border-color: var(--admin-border);
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent !important;
+    color: var(--admin-text-light);
+    border-bottom-width: 1px;
+    border-color: var(--admin-border);
+}
+
+.table thead th {
+    color: var(--admin-text-secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: var(--admin-text-light);
+}
+
+/* Botones de acción en tablas */
+.btn-info {
+    background-color: var(--admin-primary);
+    border-color: var(--admin-primary);
+}
+.btn-info:hover {
+    background-color: var(--admin-danger);
+    border-color: var(--admin-danger);
+}
+
+.btn-success {
+    background-color: var(--admin-success);
+    border-color: var(--admin-success);
+}
+.btn-success:hover {
+    background-color: #059669;
+    border-color: #059669;
+}
+
+.btn-warning {
+    background-color: var(--admin-warning);
+    border-color: var(--admin-warning);
+    color: #111827;
+}
+.btn-warning:hover {
+    background-color: #D97706;
+    border-color: #D97706;
+    color: #111827;
+}
+
+.btn-danger {
+    background-color: var(--admin-danger);
+    border-color: var(--admin-danger);
+}
+.btn-danger:hover {
+    background-color: #8B0000; /* Rojo aún más oscuro */
+    border-color: #8B0000;
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+    background-color: var(--admin-card-bg);
+    border: 1px solid var(--admin-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.stat-icon {
+    font-size: 2.5rem;
+}
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+.stat-label {
+    color: var(--admin-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Ajustes responsivos adicionales */
+@media (max-width: 576px) {
+    .section-header h2 {
+        font-size: 2rem; /* Reducir tamaño del título principal en móviles */
+    }
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}

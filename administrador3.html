@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiendaPeliX - Admin Productos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="administrador.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Header con Navbar de Bootstrap -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="peliX.html">
+                    <div class="logo-icon">🎬</div>
+                    <h1>TiendaPeliX <span class="badge bg-primary">Admin</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="adminNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="administrador.html">Recargas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="administrador1.html">Logros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="administrador2.html">Verificados</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="administrador3.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="administrador4.html">Soporte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="administrador5.html">Usuarios</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5 pt-5">
+        <div class="section-header text-center mb-5">
+            <h2 class="display-5 fw-bold">📦 Productos</h2>
+            <p class="text-white-50">Añade o elimina productos de la tienda.</p>
+        </div>
+
+        <div class="row gy-5">
+            <!-- Columna Izquierda: Formularios -->
+            <div class="col-lg-4">
+                <div class="settings-card p-4">
+                    <h4 class="mb-4">Añadir Nuevo Producto</h4>
+                    <form id="product-form">
+                        <div class="mb-3">
+                            <label for="product-name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="product-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-price" class="form-label">Precio (MXN)</label>
+                            <input type="number" step="0.01" class="form-control" id="product-price" required>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="product-featured">
+                            <label class="form-check-label" for="product-featured">
+                                ¿Es un producto destacado?
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary cta-button w-100">Añadir Producto</button>
+                    </form>
+                </div>
+
+                <div class="settings-card p-4 mt-4">
+                    <h4 class="mb-4">Generar Códigos de Regalo</h4>
+                    <form id="gift-code-generator-form">
+                        <div class="mb-3"><label for="code-quantity" class="form-label">Cantidad</label><input type="number" class="form-control" id="code-quantity" value="5" min="1" max="100" required></div>
+                        <div class="mb-3">
+                            <label for="code-type" class="form-label">Tipo de Recompensa</label>
+                            <select id="code-type" class="form-select">
+                                <option value="saldo">Saldo</option>
+                                <option value="logro">Logro</option>
+                                <option value="nada">Nada (vacío)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="code-value-container"><label for="code-value" class="form-label">Valor (USD o ID del logro)</label><input type="text" class="form-control" id="code-value" placeholder="Ej: 10 o 'PRIMERA_COMPRA'"></div>
+                        <button type="submit" class="btn btn-success w-100">Generar Códigos</button>
+                    </form>
+                    <div id="generated-codes-container" class="mt-4 d-none">
+                        <h5>Códigos Generados:</h5>
+                        <textarea id="generated-codes-output" class="form-control" rows="5" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Lista de productos -->
+            <div class="col-lg-8">
+                <div class="settings-card p-4">
+                    <h4 class="mb-4">Lista de Productos Actuales</h4>
+                    <div id="products-list-container" class="table-responsive">
+                        <table class="table table-dark table-hover align-middle" id="products-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Gestionar Cuentas -->
+    <div class="modal fade" id="stockModal" tabindex="-1" aria-labelledby="stockModalLabel" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content settings-card">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="stockModalLabel">Gestionar Cuentas para: <span id="modal-product-name"></span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para añadir nueva cuenta -->
+                    <h5 class="mb-3">Añadir Nueva Cuenta</h5>
+                    <form id="add-account-form" class="mb-4">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-sm-5"><label for="account-email" class="form-label">Correo</label><input type="text" class="form-control" id="account-email" required></div>
+                            <div class="col-sm-5"><label for="account-password" class="form-label">Contraseña</label><input type="text" class="form-control" id="account-password" required></div>
+                            <div class="col-sm-2 d-flex">
+                                <button type="button" id="generate-credentials-btn" class="btn btn-info me-2" title="Generar nuevas credenciales"><i class="bi bi-dice-5-fill"></i></button>
+                                <button type="submit" class="btn btn-success w-100">Añadir</button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
+                    <!-- Lista de cuentas existentes -->
+                    <h5 class="mb-3">Cuentas Existentes</h5>
+                    <div id="accounts-list" class="table-responsive"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Cuenta -->
+    <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content settings-card">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="editAccountModalLabel">Editar Cuenta</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-account-form">
+                        <input type="hidden" id="edit-account-id">
+                        <div class="mb-3"><label for="edit-account-email" class="form-label">Correo</label><input type="text" class="form-control" id="edit-account-email" required></div>
+                        <div class="mb-3"><label for="edit-account-password" class="form-label">Contraseña</label><input type="text" class="form-control" id="edit-account-password" required></div>
+                        <div class="modal-footer border-0 px-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Enviar Cuenta a Usuario -->
+    <div class="modal fade" id="sendAccountModal" tabindex="-1" aria-labelledby="sendAccountModalLabel" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content settings-card">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="sendAccountModalLabel">Enviar Cuenta a Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="send-account-form">
+                        <div class="mb-3"><label for="send-to-user-email" class="form-label">Correo del Usuario</label><input type="email" class="form-control" id="send-to-user-email" placeholder="usuario@ejemplo.com" required></div>
+                        <div class="d-grid"><button type="submit" class="btn btn-success">Confirmar y Enviar</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de Notificaciones (Toast) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="stock-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-white">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong class="me-auto">Alerta de Stock</strong>
+                <small>Ahora</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="stock-toast-body">
+                <!-- El mensaje se inyectará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="administrador3.js"></script>
+</body>
+</html>

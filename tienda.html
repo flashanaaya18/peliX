@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiendaPeliX - Tienda Completa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="movil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Header con Navbar de Bootstrap -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="peliX.html">
+                    <div class="logo-icon">🎬</div>
+                    <h1>TiendaPeliX</h1>
+                </a>
+                <!-- Botón para abrir el menú Overlay en móviles -->
+                <button class="navbar-toggler" type="button" id="open-menu-btn" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Menú para pantallas grandes (PC) -->
+                <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="peliX.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="tienda.html">Tienda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="favoritos.html">Favoritos</a></li>
+                        <li class="nav-item"><div class="dropdown"><button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span id="country-flag-display" class="me-2"></span><span id="country-currency-display">USD</span></button><ul class="dropdown-menu dropdown-menu-end" id="country-selector-dropdown"></ul></div></li>
+                        <li class="nav-item"><a href="carrito.html" class="nav-link cart-link-bootstrap"><i class="bi bi-cart-fill me-1"></i> Carrito (<span id="cart-count">0</span>)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Menú Overlay a Pantalla Completa para Móviles -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button id="close-menu-btn" class="close-menu-btn">&times;</button>
+        <div class="mobile-menu-content">
+            <a class="mobile-menu-link" href="peliX.html">Inicio</a>
+            <a class="mobile-menu-link" href="tienda.html">Tienda</a>
+            <a class="mobile-menu-link" href="perfil.html">Perfil</a>
+            <a class="mobile-menu-link" href="favoritos.html">Favoritos</a>
+            <a class="mobile-menu-link" href="carrito.html">Carrito</a>
+        </div>
+    </div>
+
+    <main class="container mt-5 pt-5">
+        <div class="section-header text-center mb-5">
+            <h2 class="display-5 fw-bold">🛍️ Nuestro Catálogo Completo</h2>
+            <p class="text-white-50">Selecciona suscripciones y paquetes para tu entretenimiento.</p>
+        </div>
+
+        <!-- Nuevo Panel de Filtros y Búsqueda -->
+        <div class="store-controls p-4 mb-5">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-6">
+                    <div class="search-bar-container">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" id="search-input" class="form-control form-control-lg search-input" placeholder="Buscar por nombre...">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="filter-group text-center text-lg-end" id="category-filters">
+                        <button type="button" class="btn btn-filter active" data-filter="all">Todos</button>
+                        <button type="button" class="btn btn-filter" data-filter="featured">Destacados</button>
+                        <button type="button" class="btn btn-filter" data-filter="netflix">Netflix</button>
+                        <button type="button" class="btn btn-filter" data-filter="disney">Disney</button>
+                        <button type="button" class="btn btn-filter" data-filter="hbo max">HBO Max</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gy-5" id="all-products">
+            <!-- Los productos se cargan dinámicamente aquí -->
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-5">
+        <div class="container text-center">
+            <p class="text-white-50">&copy; 2024 TiendaPeliX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="favoritos.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+    <script src="movil.js"></script>
+</body>
+</html>

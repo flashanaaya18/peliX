@@ -1,30 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pelix Bienvenidos</title>
-    <link rel="stylesheet" href="estilos.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
+    <title>TiendaPeliX - Cargando Experiencia...</title>
+    <style>
+        /* Reset y variables CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #E50914;
+            --primary-dark: #B20710;
+            --secondary: #F5F5F1;
+            --accent: #E50914;
+            --dark: #141414;
+            --light: #f7fafc;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor principal de la animación */
+        .loader-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #000000, #141414, #B20710, #E50914);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Logo animado */
+        .logo-svg-container {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.5));
+        }
+
+        .logo-circle {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 4;
+            stroke-dasharray: 283; /* 2 * PI * 45 */
+            stroke-dashoffset: 283;
+            animation: drawCircle 2s ease-out 1s forwards;
+        }
+
+        .logo-play {
+            fill: var(--primary);
+            opacity: 0;
+            transform-origin: center;
+            animation: popIn 0.5s ease-out 2.5s forwards, pulsePlay 2s ease-in-out 3s infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        @keyframes drawCircle { to { stroke-dashoffset: 0; } }
+        @keyframes popIn { to { opacity: 1; transform: scale(1); } }
+        @keyframes pulsePlay { 50% { transform: scale(0.9); } }
+
+        /* Texto de carga */
+        .loading-text {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient);
+            border-radius: 10px;
+            animation: progressLoad 3s ease-in-out 1.5s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes progressLoad {
+            0% { width: 0%; }
+            25% { width: 30%; }
+            50% { width: 60%; }
+            75% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Contador */
+        .counter {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
+        }
+
+        /* Efectos de partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: particleFloat 6s infinite ease-in-out;
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--accent);
+            animation-duration: 8s;
+        }
+
+        .particle:nth-child(3n) {
+            background: #fff;
+            animation-duration: 10s;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Botón de skip */
+        .skip-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease 3s forwards;
+        }
+
+        .skip-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Efecto de explosión final */
+        .explosion {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-animated {
+                font-size: 5rem;
+            }
+            
+            .loading-text {
+                font-size: 2rem;
+            }
+            
+            .counter {
+                font-size: 3rem;
+            }
+            
+            .progress-container {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-animated {
+                font-size: 4rem;
+            }
+            
+            .loading-text {
+                font-size: 1.5rem;
+            }
+            
+            .counter {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <div class="splash">
-        <img src="/peliX.png" alt="Logo Pelix" class="splash-logo fade-in">
+    <div class="loader-container" id="loader">
+        <!-- Partículas de fondo -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Contador -->
+        <div class="counter" id="counter">100%</div>
+        
+        <!-- Logo animado -->
+        <div class="logo-svg-container">
+            <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle class="logo-circle" cx="50" cy="50" r="45"/>
+                <polygon class="logo-play" points="40,30 70,50 40,70" />
+            </svg>
+        </div>
+        
+        <!-- Texto principal -->
+        <h1 class="loading-text">Cargando Experiencia Cinematográfica</h1>
+        
+        <!-- Barra de progreso -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <!-- Botón de skip -->
+        <button class="skip-btn" id="skipBtn">Saltar Animación</button>
+        
+        <!-- Efecto de explosión -->
+        <div class="explosion" id="explosion"></div>
     </div>
 
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(reg => console.log('Service worker registrado', reg))
-                    .catch(err => console.log('Error al registrar service worker', err));
-            });
+        // Es una buena práctica definir los elementos del DOM una sola vez.
+        const particlesContainer = document.getElementById('particles');
+        const counterElement = document.getElementById('counter');
+        const progressBar = document.getElementById('progressBar');
+        const explosion = document.getElementById('explosion');
+        const loader = document.getElementById('loader');
+        const skipBtn = document.getElementById('skipBtn');
+
+        let loadingCompleted = false;
+        let fallbackTimeout;
+
+        // Crear partículas dinámicas
+        function createParticles() {
+            const particleCount = 50;
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                particle.style.width = particle.style.height = (Math.random() * 6 + 2) + 'px';
+
+                fragment.appendChild(particle);
+            }
+            particlesContainer.appendChild(fragment);
         }
+
+        // Animación del contador
+        function animateCounter() {
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                if (loadingCompleted) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                progress += Math.random() * 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    completeLoading();
+                }
+
+                const currentProgress = Math.min(Math.round(progress), 100);
+                counterElement.textContent = currentProgress + '%';
+                progressBar.style.width = currentProgress + '%'; // Sincroniza la barra de progreso
+            }, 100);
+        }
+
+        // Efecto de explosión final
+        function completeLoading() {
+            if (loadingCompleted) return; // Evita ejecuciones múltiples
+            loadingCompleted = true;
+            clearTimeout(fallbackTimeout); // Limpia el temporizador de seguridad
+
+            explosion.style.opacity = '1';
+            explosion.style.transition = 'all 0.8s ease';
+            explosion.style.transform = 'scale(2)';
+
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => window.location.href = 'peliX.html', 500);
+            }, 800);
+        }
+
+        // Skip de la animación
+        skipBtn.addEventListener('click', completeLoading);
+
+        // Simular carga de recursos
+        function simulateResourceLoading() {
+            const resources = [
+                'catalogo.json',
+                'interfaz.css',
+                'animaciones.js',
+                'streaming.mp4',
+                'usuarios.db'
+            ];
+            let loaded = 0;
+            const total = resources.length;
+            resources.forEach((resource, index) =>
+                setTimeout(() => {
+                    loaded++;
+                    console.log(`✅ ${resource} cargado (${loaded}/${total})`);
+                }, index * 600)
+            );
+        }
+
+        // Inicializar cuando la página cargue
+        window.addEventListener('load', () => {
+            createParticles();
+            animateCounter();
+            simulateResourceLoading();
+
+            // Iniciar automáticamente después de 12 segundos máximo
+            fallbackTimeout = setTimeout(completeLoading, 12000);
+        });
+
+        // Efectos de sonido opcionales (comentados por defecto)
+        /*
+        function playSoundEffect() {
+            const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQ...');
+            audio.volume = 0.3;
+            audio.play();
+        }
+        */
     </script>
-    <script src="authService.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>

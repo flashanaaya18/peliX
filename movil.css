@@ -1,0 +1,50 @@
+/* Estilos para el menú Overlay de pantalla completa */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0; /* Cambiado de left a right */
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(30px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%); /* Oculto a la derecha por defecto */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.close-menu-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.mobile-menu-content {
+    text-align: center;
+}
+
+.mobile-menu-link {
+    display: block;
+    color: var(--light);
+    text-decoration: none;
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 0.8rem 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Animación escalonada para los enlaces */
+/* Opcional: se puede añadir una animación de entrada para los enlaces si se desea */
