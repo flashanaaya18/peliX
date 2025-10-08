@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiendaPeliX - Recargar Saldo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Header con Navbar de Bootstrap -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="peliX.html">
+                    <div class="logo-icon">🎬</div>
+                    <h1>TiendaPeliX</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="peliX.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tienda.html">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="perfil.html">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="perfil.html">Ajustes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="favoritos.html">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="carrito.html" class="nav-link cart-link-bootstrap">
+                                <i class="bi bi-cart-fill me-1"></i>
+                                Carrito (<span id="cart-count">0</span>)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5 pt-5">
+        <div class="section-header text-center mb-5">
+            <h2 class="display-5 fw-bold">💰 Recargar Saldo</h2>
+            <p class="text-white-50">Añade fondos a tu cuenta para disfrutar sin límites.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Sección para ver saldo actual -->
+                <div class="settings-card p-4 mb-5">
+                    <h4 class="mb-3"><i class="bi bi-wallet2 me-2"></i>Consultar Mi Saldo</h4>
+                    <div class="input-group">
+                        <input type="email" id="check-balance-email" class="form-control" placeholder="Introduce tu correo para ver tu saldo">
+                        <button class="btn btn-outline-light" id="check-balance-btn">Consultar</button>
+                    </div>
+                    <div id="balance-display" class="mt-3 fs-4 d-none">
+                        Saldo actual: <strong id="user-balance" class="text-success"></strong>
+                    </div>
+                </div>
+
+                <!-- Sección para recargar saldo -->
+                <div class="settings-card p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <h4 class="mb-1">Solicitar Nueva Recarga</h4>
+                    </div>
+                    <form id="saldo-form">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fs-5">Correo Electrónico</label>
+                            <input type="email" class="form-control form-control-lg" id="email" placeholder="tu.correo@ejemplo.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="country" class="form-label fs-5">País</label>
+                            <select class="form-select form-select-lg" id="country" required></select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="amount" class="form-label fs-5">Monto a Recargar</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text" id="currency-symbol">$</span>
+                                <input type="number" class="form-control" id="amount" placeholder="100" min="1" required>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg cta-button">Solicitar Recarga</button>
+                        </div>
+                    </form>
+                    <div id="success-message" class="alert alert-success mt-4 d-none" role="alert">
+                        ¡Solicitud enviada! Un administrador se pondrá en contacto contigo para completar la recarga.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-5">
+        <div class="container text-center">
+            <p class="text-white-50">&copy; 2024 TiendaPeliX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="saldo.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
